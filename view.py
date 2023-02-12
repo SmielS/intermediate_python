@@ -4,9 +4,10 @@ from datetime import datetime
 COMMANDS_LIST = {
     '1': 'add new',
     '2': 'view all',
-    '3': 'edit',
-    '4': 'delete',
-    '5': 'exit',
+    '3': 'view by date',
+    '4': 'edit',
+    '5': 'delete',
+    '6': 'exit',
 }
 
 
@@ -44,6 +45,14 @@ def get_note_text():
             text_required = False
     return title, text
 
+def get_date():
+    while True:
+        date = input('enter date (dd.mm.yyyy) : ')
+        try:
+            datetime.strptime(date, '%d.%m.%Y')
+            return date
+        except:
+            print(f' {date} 404\n')
 
 def print_note(note):
     print(f'ID: {note["id"]}\n{note["title"].upper()}\n{note["text"]}\nupdate time:{note["date"]}')
